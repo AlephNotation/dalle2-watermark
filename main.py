@@ -38,10 +38,12 @@ def draw_all_boxes(img_arr, color_list: list[tuple[int, int, int]]):
     return img_arr
 
 @app.post("/convert")
-async def convert(file: UploadFile = File(...)):    
+async def convert(resize: bool=False, file: UploadFile = File(...)):    
     contents = await file.read()
     temp = BytesIO(contents)
     img = Image.open(temp).convert("RGB")
+    if resize:
+        img = img.resize((1024, 1024))
 
     img_arr = np.asarray(img)
 
