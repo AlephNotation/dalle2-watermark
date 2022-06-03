@@ -39,7 +39,7 @@ def draw_all_boxes(img_arr, color_list: list[tuple[int, int, int]]):
 
 @app.post("/add_watermark")
 async def add_watermark_to_image(resize: bool=False, image: UploadFile = File(...)):    
-    contents = await file.read()
+    contents = await image.read()
     temp = BytesIO(contents)
     img = Image.open(temp).convert("RGB")
     if resize:
