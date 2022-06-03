@@ -4,6 +4,7 @@ from io import BytesIO
 import numpy as np
 from dataclasses import dataclass
 from starlette.responses import StreamingResponse
+import uvicorn
 
 BLUE = (60, 70, 255)
 ORANGE = (255, 110, 60)
