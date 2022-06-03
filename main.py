@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, responses
 from PIL import Image
 from io import BytesIO
 import numpy as np
@@ -62,5 +62,5 @@ async def convert(file: UploadFile = File(...)):
     return StreamingResponse(content=out_bytes, media_type="image/png")
 
 @app.get("/")
-async def root():
-    return {"Hello": "World"}
+async def docs_redirect():
+    return responses.RedirectResponse(url='/docs')
