@@ -37,8 +37,8 @@ def draw_all_boxes(img_arr, color_list: list[tuple[int, int, int]]):
         img_arr = draw_color_box(img_arr, box_start, box_end, color)
     return img_arr
 
-@app.post("/convert")
-async def convert(resize: bool=False, file: UploadFile = File(...)):    
+@app.post("/add_watermark")
+async def add_watermark_to_image(resize: bool=False, file: UploadFile = File(...)):    
     contents = await file.read()
     temp = BytesIO(contents)
     img = Image.open(temp).convert("RGB")
